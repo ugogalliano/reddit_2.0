@@ -1,3 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .icon {
+    @apply w-6 h-9 lg:w-9 rounded-full lg:p-1 cursor-pointer  lg:hover:bg-gray-100 transition-all ease-in-out;
+  }
+}
+
 html,
 body {
   padding: 0;
