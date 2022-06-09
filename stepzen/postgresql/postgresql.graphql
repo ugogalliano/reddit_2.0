@@ -82,6 +82,18 @@ type Query {
       table: "Post"
       configuration: "postgresql_config"
     )
+
+getSubRedditListByTopic(topic:String!):[SubReddit]
+@dbquery(
+      type: "postgresql"
+    query:"""
+    Select * from "SubReddit" where topic = $1
+    """
+      table: "SubReddit"
+      configuration: "postgresql_config"
+    )
+
+  
   getSubRedditList: [SubReddit]
     @dbquery(
       type: "postgresql"

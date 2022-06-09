@@ -1,8 +1,18 @@
-import { useSession } from "next-auth/react";
+
 import React, { useState } from "react";
 import Avatar from "./Avatar";
-import { LinkIcon, PhotographIcon } from "@heroicons/react/outline";
+
+
+//hooks
 import { useForm } from "react-hook-form";
+import { useSession } from "next-auth/react";
+import { useMutation } from "@apollo/client";
+
+//icons
+import { LinkIcon, PhotographIcon } from "@heroicons/react/outline";
+import { ADD_POST } from "../graphql/mutations";
+
+
 
 type FormData = {
   postTitle: string;
@@ -20,9 +30,19 @@ const PostBox = () => {
     watch,
     formState: { errors },
   } = useForm<FormData>();
+  const [addPost] = useMutation(ADD_POST)
 
   const onSubmit = async(data: object) =>{
     
+    try{
+
+
+
+    }catch(
+        error
+    ){
+
+    }
   };
 
   return (
