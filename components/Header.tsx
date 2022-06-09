@@ -13,10 +13,13 @@ import {
   MenuIcon,
   VideoCameraIcon,
 } from "@heroicons/react/outline";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const Header = () => {
+  const { data: session } = useSession();
+
   return (
-    <div className=" sticky top-0 px-4 py-2 shadow-sm flex items-center   w-full ">
+    <div className=" sticky top-0 px-4 py-2 shadow-sm flex bg-white items-center   w-full ">
       <div className="relative h-10  w-20 flex-shrink-0  cursor-pointer">
         <Image
           src="https://links.papareact.com/fqy"
@@ -52,15 +55,33 @@ const Header = () => {
       </ul>
 
       {/**SIGN IN , SIGN OUT */}
-      <div className="  hidden lg:flex items-center cursor-pointer ml-5 border-2  border-gray-200 p-1 rounded-md min-w-fit ">
-        <Image
-          src="https://links.papareact.com/23l"
-          width={25}
-          height={25}
-          alt="Button Sign In "
-        />
-        <div className="ml-2">SIGN IN</div>
-      </div>
+      {!session ? (
+        <div
+          onClick={() => signIn()}
+          className="  hidden lg:flex items-center cursor-pointer ml-5 border-2  border-gray-200 p-1 rounded-md min-w-fit "
+        >
+          <Image
+            src="https://links.papareact.com/23l"
+            width={25}
+            height={25}
+            alt="Button Sign In "
+          />
+          <div className="ml-2">SIGN IN</div>
+        </div>
+      ) : (
+        <div
+          onClick={() => signOut()}
+          className="  hidden lg:flex items-center cursor-pointer ml-5 border-2  border-gray-200 p-1 rounded-md min-w-fit "
+        >
+          <Image
+            src="https://links.papareact.com/23l"
+            width={25}
+            height={25}
+            alt="Button Sign In "
+          />
+          <div className="ml-2">SIGN OUT</div>
+        </div>
+      )}
 
       <div className="inline lg:hidden">
         <MenuIcon className="w-5 h-5 cursor-pointer" />
